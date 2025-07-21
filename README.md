@@ -1,40 +1,154 @@
-# Welcome to React Router!
+# 🎬 OMDB React App
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A modern React application for searching movies and series using the OMDB API. Built with TypeScript, React Router, and Tailwind CSS following Clean Architecture principles.
+
+## ✨ Features
+
+- 🔍 **Real-time search** for movies and series
+- 🎯 **Advanced filters** by content type
+- 📱 **Responsive design** with Tailwind CSS
+- 🌙 **Dark mode** included
+- ⚡ **Infinite pagination** for results
+- 🎨 **Modern UI** with reusable components
+- 🏗️ **Clean Architecture** for maintainable code
+- 📊 **Complete details** for movies and series
+- 🚀 **TypeScript** for enhanced type safety
+- 🎭 **Smooth animations** with Framer Motion
+- 🔄 **State management** with Zustand
+- 🛡️ **API validation** with Zod schemas
+- 🎪 **Heroicons** for beautiful icons
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
 
-## Features
+## 🛠️ Technologies Used
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- **React 19** - Latest React with Hooks and TypeScript
+- **React Router v7** - Client-side routing and navigation
+- **TypeScript** - Type safety and better development experience
+- **Tailwind CSS v4** - Utility-first CSS framework
+- **Zustand** - Lightweight state management
+- **Framer Motion** - Declarative animations
+- **Zod** - Runtime schema validation
+- **Axios** - HTTP client for API calls
+- **Heroicons** - Beautiful SVG icons
+- **Prettier** - Code formatting and consistency
+- **Husky** - Git hooks for code quality
+- **Commitizen** - Conventional commit messages
 
-## Getting Started
+## 📸 Screenshots
 
-### Installation
+### 🖥️ Desktop View
 
-Install the dependencies:
+#### Light Mode
+
+![Desktop Light Mode](public/desktop-light.png)
+
+#### Dark Mode
+
+![Desktop Dark Mode](public/desktop-dark.png)
+
+### 📱 Mobile View
+
+#### Light Mode
+
+![Mobile Light Mode](public/mobile-light.png)
+
+#### Dark Mode
+
+![Mobile Dark Mode](public/mobile-dark.png)
+
+## 🚀 Initial Setup
+
+### 📋 Prerequisites
+
+1. **Get your OMDB API Key:**
+   - Go to [OMDB API](https://www.omdbapi.com/apikey.aspx)
+   - Request a free API key
+   - You'll receive the key via email
+
+### ⚙️ Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone <your-repository>
+   cd omdb-react-app
+   ```
+
+2. **Install dependencies:**
 
 ```bash
 npm install
 ```
 
-### Development
+3. **Configure the API Key:**
+   - Create a `.env` file in the project root
+   - Add your API key:
 
-Start the development server with HMR:
+   ```env
+   VITE_OMDB_API_KEY=your_api_key_here
+   ```
+
+4. **Start the development server:**
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+5. **Open your browser:**
+   - The application will be available at `http://localhost:5173`
 
-## Building for Production
+## 🛠️ Development Scripts
+
+```bash
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Type checking
+npm run typecheck
+
+# Format code with Prettier
+npm run format
+
+# Check code formatting
+npm run format:check
+
+# Lint code (formatting + type checking)
+npm run lint
+
+# Commit with conventional commits
+npm run commit
+```
+
+## 🏗️ Project Structure
+
+```
+app/
+├── components/          # 🎨 Presentation Layer
+│   ├── ui/             # Reusable UI components
+│   ├── search/         # Search components
+│   └── details/        # Detail components
+├── shared/             # 🔧 Shared utilities
+│   ├── schemas/        # Zod schemas for validation
+│   ├── types/          # TypeScript type definitions
+│   └── services/       # API services
+├── api/                # 📡 Data Layer
+│   └── core/           # HTTP client and API core
+├── hooks/              # 🎣 Domain Layer
+│   ├── useSearch.ts
+│   └── useMovieDetails.ts
+├── stores/             # 🗄️ State management
+│   ├── useSearchStore.ts
+│   └── useMovieDetailsStore.ts
+├── contexts/           # 🌐 React contexts
+│   └── ThemeContext.tsx
+└── routes/             # 🛣️ Application pages
+```
+
+## 📦 Production Build
 
 Create a production build:
 
@@ -42,46 +156,99 @@ Create a production build:
 npm run build
 ```
 
-## Deployment
+## 🚀 Deployment
 
-### Docker Deployment
+### 🐳 Docker Deployment
 
 To build and run using Docker:
 
 ```bash
-docker build -t my-app .
+docker build -t omdb-react-app .
 
 # Run the container
-docker run -p 3000:3000 my-app
+docker run -p 3000:3000 omdb-react-app
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+The containerized application can be deployed on any platform that supports Docker:
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
+- **AWS ECS**
+- **Google Cloud Run**
+- **Azure Container Apps**
+- **Digital Ocean App Platform**
+- **Fly.io**
+- **Railway**
 
-### DIY Deployment
+### 🛠️ Manual Deployment
 
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
+If you're familiar with Node.js application deployment, the integrated server is ready for production.
 
-Make sure to deploy the output of `npm run build`
+Make sure to deploy the result of `npm run build`:
 
 ```
 ├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
+├── package-lock.json
 ├── build/
 │   ├── client/    # Static assets
-│   └── server/    # Server-side code
+│   └── server/    # Server code
 ```
 
-## Styling
+## 🎨 Styling
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+This application uses [Tailwind CSS](https://tailwindcss.com/) for modern and responsive design. Includes:
+
+- **Responsive design** for all devices
+- **Dark mode** with smooth transitions
+- **Reusable components** with Tailwind
+- **Smooth animations** and transitions
+- **Modern UI patterns** and best practices
+
+## 🔧 Implemented Features
+
+### ✅ **Search and Filters**
+
+- Real-time search with debouncing
+- Filters by type (movies/series/both)
+- Infinite pagination
+- Error handling and loading states
+- Skeleton loaders for better UX
+
+### ✅ **Navigation**
+
+- React Router for page navigation
+- Dynamic routes for movie details
+- Fixed header with back button
+- Smooth page transitions
+
+### ✅ **UI/UX Design**
+
+- Responsive design with Tailwind CSS
+- Dark mode with theme context
+- Accessible components
+- Loading states and error handling
+- Modern animations with Framer Motion
+
+### ✅ **Clean Architecture**
+
+- Clear separation of concerns
+- Custom hooks for business logic
+- Separated API services
+- Reusable components
+- Zod validation for API responses
+
+### ✅ **State Management**
+
+- Zustand for global state
+- React Context for theme management
+- Optimized re-renders
+- Persistent theme preferences
+
+### ✅ **API Integration**
+
+- Custom HTTP client with fetch
+- Zod schema validation
+- Error handling and retry logic
+- CORS handling for OMDB API
 
 ---
 
-Built with ❤️ using React Router.
+Built with ❤️ using React Router and TypeScript.
