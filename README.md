@@ -41,21 +41,21 @@ A modern React application for searching movies and series using the OMDB API. B
 
 #### Light Mode
 
-![Desktop Light Mode](public/desktop-light.png)
+![Desktop Light Mode](https://github.com/MarioDev64/omdb-react-app/blob/main/public/desktop_light.png)
 
 #### Dark Mode
 
-![Desktop Dark Mode](public/desktop-dark.png)
+![Desktop Dark Mode](https://github.com/MarioDev64/omdb-react-app/blob/main/public/desktop_dark.png)
 
 ### 📱 Mobile View
 
 #### Light Mode
 
-![Mobile Light Mode](public/mobile-light.png)
+![Mobile Light Mode](https://github.com/MarioDev64/omdb-react-app/blob/main/public/mobile_light.png)
 
 #### Dark Mode
 
-![Mobile Dark Mode](public/mobile-dark.png)
+![Mobile Dark Mode](https://github.com/MarioDev64/omdb-react-app/blob/main/public/mobile_dark.png)
 
 ## 🚀 Initial Setup
 
