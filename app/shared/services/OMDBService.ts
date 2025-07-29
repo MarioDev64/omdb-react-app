@@ -29,6 +29,12 @@ export class OMDBService extends HttpClient {
     super('', baseUrl);
     this.apiKey = import.meta.env.VITE_OMDB_API_KEY || '';
 
+    console.log('🔧 OMDBService initialized:', {
+      isProduction,
+      baseUrl,
+      env: import.meta.env.MODE,
+    });
+
     if (!this.apiKey) {
       console.warn(
         '⚠️ VITE_OMDB_API_KEY is not configured. Get your API key at https://www.omdbapi.com/'
