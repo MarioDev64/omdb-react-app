@@ -1,6 +1,8 @@
 import type { Config } from '@react-router/dev/config';
 
 export default {
-  // Disable SSR for GitHub Pages (SPA mode)
-  ssr: false,
+  // Enable SSR for Netlify
+  ssr: true,
+  // Prerender for better SEO
+  prerender: ['/', '/movie/:id'],
 } satisfies Config;
