@@ -62,10 +62,10 @@
   VITE_OMDB_API_KEY = "your_omdb_api_key_here"
   VITE_GA_MEASUREMENT_ID = "your_ga_measurement_id_here"
 
-# Plugin configuration
-[[plugins]]
-  package = "@netlify/plugin-lighthouse"
+# Plugin configuration (commented out - not needed for this app)
+# [[plugins]]
+#   package = "@netlify/plugin-lighthouse"
 
-# Form handling (if needed later)
-[[plugins]]
-  package = "@netlify/plugin-forms" 
+# Form handling (commented out - not needed for this app)
+# [[plugins]]
+#   package = "@netlify/plugin-forms" 

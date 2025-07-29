@@ -21,7 +21,9 @@ export class OMDBService extends HttpClient {
 
   constructor() {
     // Force proxy usage in Netlify to avoid CORS issues
-    const isNetlify = typeof window !== 'undefined' && window.location.hostname.includes('netlify.app');
+    const isNetlify =
+      typeof window !== 'undefined' &&
+      window.location.hostname.includes('netlify.app');
     const baseUrl = isNetlify
       ? '/.netlify/functions/omdb-proxy'
       : 'http://www.omdbapi.com';
@@ -33,7 +35,8 @@ export class OMDBService extends HttpClient {
       isNetlify,
       baseUrl,
       env: import.meta.env.MODE,
-      hostname: typeof window !== 'undefined' ? window.location.hostname : 'server',
+      hostname:
+        typeof window !== 'undefined' ? window.location.hostname : 'server',
     });
 
     if (!this.apiKey) {
@@ -52,7 +55,9 @@ export class OMDBService extends HttpClient {
   private buildUrl(
     params: Record<string, string | number | undefined>
   ): string {
-    const isNetlify = typeof window !== 'undefined' && window.location.hostname.includes('netlify.app');
+    const isNetlify =
+      typeof window !== 'undefined' &&
+      window.location.hostname.includes('netlify.app');
 
     if (isNetlify) {
       // In Netlify, use the proxy - API key is handled server-side
