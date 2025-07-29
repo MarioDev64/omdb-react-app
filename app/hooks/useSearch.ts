@@ -25,7 +25,9 @@ export function useSearch() {
     clearResults,
     clearError,
     getCachedData,
+    getCachedResults,
     setCachedResults,
+    getCacheStats,
   } = useSearchStore();
 
   // Debounce to avoid excessive API calls
@@ -47,12 +49,20 @@ export function useSearch() {
         return;
       }
 
-      // Check cache first
-      const cached = getCachedData(query, type);
-
-      if (cached && page === 1) {
-        setResults(cached.results, cached.totalResults);
-        return;
+      // Check cache first for better UX
+      if (page === 1) {
+        const cached = getCachedData(query, type);
+        if (cached) {
+          setResults(cached.results, cached.totalResults);
+          return;
+        }
+      } else {
+        const cached = getCachedResults(query, type, page);
+        if (cached) {
+          addResults(cached);
+          setCurrentPage(page);
+          return;
+        }
       }
 
       try {
@@ -69,8 +79,8 @@ export function useSearch() {
         const newResults = response.Search || [];
         const total = response.totalResults || 0;
 
-        // Cache the results
-        setCachedResults(query, type, newResults, total);
+        // Cache the results with page information
+        setCachedResults(query, type, newResults, total, page);
 
         if (page === 1) {
           setResults(newResults, total);
@@ -86,10 +96,10 @@ export function useSearch() {
             : 'An error occurred during search'
         );
       } finally {
-        // Add a small delay to ensure the new results are rendered before hiding skeleton
+        // Reduced loading time for better UX
         setTimeout(() => {
           setLoading(false);
-        }, 2000);
+        }, 300);
       }
     },
     [
@@ -100,8 +110,8 @@ export function useSearch() {
       addResults,
       setCurrentPage,
       getCachedData,
+      getCachedResults,
       setCachedResults,
-      totalResults,
     ]
   );
 
@@ -138,6 +148,11 @@ export function useSearch() {
     clearResults();
   }, [clearResults]);
 
+  // Function to get cache statistics (useful for debugging)
+  const getCacheStatistics = useCallback(() => {
+    return getCacheStats();
+  }, [getCacheStats]);
+
   return {
     results,
     loading,
@@ -149,5 +164,6 @@ export function useSearch() {
     clearResults: clearResultsHandler,
     hasMore: hasMore(),
     isEmpty,
+    getCacheStats: getCacheStatistics,
   };
 }

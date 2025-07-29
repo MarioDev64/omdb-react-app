@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router';
+import { useRef } from 'react';
+import { useMovieDetails } from '../../hooks/useMovieDetails';
 import type { SearchResult } from '../../shared/types/omdb';
 
 interface MovieCardProps {
@@ -13,6 +15,9 @@ export function MovieCard({
   className = '',
   index = 0,
 }: MovieCardProps) {
+  const { prefetchMovie } = useMovieDetails();
+  const prefetchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const getTypeIcon = (type: string) => {
     switch (type) {
       case 'movie':
@@ -39,6 +44,26 @@ export function MovieCard({
     }
   };
 
+  const handleMouseEnter = () => {
+    // Clear any existing timeout
+    if (prefetchTimeoutRef.current) {
+      clearTimeout(prefetchTimeoutRef.current);
+    }
+
+    // Prefetch movie details after 300ms of hover
+    prefetchTimeoutRef.current = setTimeout(() => {
+      prefetchMovie(movie.imdbID);
+    }, 300);
+  };
+
+  const handleMouseLeave = () => {
+    // Clear prefetch timeout if user stops hovering
+    if (prefetchTimeoutRef.current) {
+      clearTimeout(prefetchTimeoutRef.current);
+      prefetchTimeoutRef.current = null;
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -53,6 +78,8 @@ export function MovieCard({
         transition: { duration: 0.2 },
       }}
       whileTap={{ scale: 0.95 }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <Link
         to={`/movie/${movie.imdbID}`}

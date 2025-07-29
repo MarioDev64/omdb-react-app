@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mariodev64.github.io/omdb-react-app/sitemap.xml
+
+# Disallow API calls
+Disallow: /api/
+
+# Allow all other content
+Allow: / 
