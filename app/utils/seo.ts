@@ -97,7 +97,9 @@ export function updateTwitterCard(
   twitterTitle.setAttribute('content', title);
 
   // Description
-  let twitterDescription = document.querySelector('meta[name="twitter:description"]');
+  let twitterDescription = document.querySelector(
+    'meta[name="twitter:description"]'
+  );
   if (!twitterDescription) {
     twitterDescription = document.createElement('meta');
     twitterDescription.setAttribute('name', 'twitter:description');
@@ -128,4 +130,4 @@ export function setCanonicalUrl(url: string): void {
     document.head.appendChild(canonical);
   }
   canonical.setAttribute('href', url);
-} 
+}

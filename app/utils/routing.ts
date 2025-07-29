@@ -9,12 +9,12 @@ export function getBasePath(): string | undefined {
   if (import.meta.env.DEV) {
     return undefined;
   }
-  
+
   // Check if we're on GitHub Pages
   if (window.location.hostname === 'mariodev64.github.io') {
     return '/omdb-react-app';
   }
-  
+
   return undefined;
 }
 
@@ -42,4 +42,4 @@ export function navigateTo(path: string): void {
   const basePath = getBasePath();
   const fullPath = basePath ? `${basePath}${path}` : path;
   window.location.href = fullPath;
-} 
+}

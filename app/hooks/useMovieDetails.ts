@@ -84,7 +84,7 @@ export function useMovieDetails() {
   const prefetchMovieHandler = useCallback(
     async (imdbId: string) => {
       if (!imdbId) return;
-      
+
       // Don't prefetch if already cached
       const cached = getCachedMovie(imdbId);
       if (cached) return;

@@ -25,7 +25,7 @@ export class ErrorBoundary extends React.Component<
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('Error caught by boundary:', error, errorInfo);
-    
+
     // Log error to external service in production
     if (process.env.NODE_ENV === 'production') {
       // You can add error reporting service here
@@ -81,4 +81,4 @@ function DefaultErrorFallback({ error }: { error?: Error }) {
       </div>
     </div>
   );
-} 
+}

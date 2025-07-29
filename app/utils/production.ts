@@ -13,23 +13,24 @@ export function initializeProduction(): void {
     // Register service worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/omdb-react-app/sw.js')
-          .then((registration) => {
+        navigator.serviceWorker
+          .register('/omdb-react-app/sw.js')
+          .then(registration => {
             console.log('SW registered: ', registration);
           })
-          .catch((registrationError) => {
+          .catch(registrationError => {
             console.log('SW registration failed: ', registrationError);
           });
       });
     }
 
     // Add production error handling
-    window.addEventListener('error', (event) => {
+    window.addEventListener('error', event => {
       console.error('Production error:', event.error);
       // You can send errors to an external service here
     });
 
-    window.addEventListener('unhandledrejection', (event) => {
+    window.addEventListener('unhandledrejection', event => {
       console.error('Unhandled promise rejection:', event.reason);
       // You can send errors to an external service here
     });
@@ -86,4 +87,4 @@ export function logProductionInfo(): void {
       baseUrl: import.meta.env.BASE_URL,
     });
   }
-} 
+}

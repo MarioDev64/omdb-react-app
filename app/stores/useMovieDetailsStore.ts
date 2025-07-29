@@ -89,7 +89,7 @@ export const useMovieDetailsStore = create<MovieDetailsState>()(
 
       setCachedMovie: (imdbId, movie) => {
         const { detailsCache, cacheConfig, cleanupCache } = get();
-        
+
         // Cleanup cache if it's getting too large
         if (detailsCache.size >= cacheConfig.maxCacheSize) {
           cleanupCache();
@@ -109,20 +109,23 @@ export const useMovieDetailsStore = create<MovieDetailsState>()(
         const { detailsCache, cacheConfig } = get();
         const now = Date.now();
         const entries = Array.from(detailsCache.entries());
-        
+
         // Sort by last accessed time and access count (LRU with frequency)
         entries.sort((a, b) => {
           const aScore = a[1].accessCount * (now - a[1].lastAccessed);
           const bScore = b[1].accessCount * (now - b[1].lastAccessed);
           return aScore - bScore;
         });
-        
+
         // Remove oldest entries if cache is too large
         if (entries.length > cacheConfig.maxCacheSize) {
-          const toRemove = entries.slice(0, entries.length - cacheConfig.maxCacheSize);
+          const toRemove = entries.slice(
+            0,
+            entries.length - cacheConfig.maxCacheSize
+          );
           toRemove.forEach(([key]) => detailsCache.delete(key));
         }
-        
+
         // Remove expired entries
         entries.forEach(([key, value]) => {
           if (now - value.timestamp > cacheConfig.maxCacheAge) {
@@ -131,9 +134,9 @@ export const useMovieDetailsStore = create<MovieDetailsState>()(
         });
       },
 
-      prefetchMovie: async (imdbId) => {
+      prefetchMovie: async imdbId => {
         const { getCachedMovie, setCachedMovie, cacheConfig } = get();
-        
+
         // Don't prefetch if already cached
         if (getCachedMovie(imdbId)) {
           return;
@@ -141,8 +144,10 @@ export const useMovieDetailsStore = create<MovieDetailsState>()(
 
         try {
           // Import service dynamically to avoid circular dependencies
-          const { omdbService } = await import('../shared/services/OMDBService');
-          
+          const { omdbService } = await import(
+            '../shared/services/OMDBService'
+          );
+
           if (!omdbService.isApiKeyConfigured()) {
             return;
           }
@@ -160,14 +165,15 @@ export const useMovieDetailsStore = create<MovieDetailsState>()(
         const now = Date.now();
         let totalHits = 0;
         let totalMisses = 0;
-        
+
         // This is a simplified version - in a real app you'd track hits/misses
         detailsCache.forEach(entry => {
-          if (now - entry.lastAccessed < 60000) { // Last minute
+          if (now - entry.lastAccessed < 60000) {
+            // Last minute
             totalHits += entry.accessCount;
           }
         });
-        
+
         return {
           size: detailsCache.size,
           hitRate: totalHits / Math.max(totalHits + totalMisses, 1),

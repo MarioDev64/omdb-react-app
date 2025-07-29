@@ -19,10 +19,13 @@ export function useCacheManager() {
 
   // Auto-cleanup cache every 5 minutes
   useEffect(() => {
-    const interval = setInterval(() => {
-      cleanupSearchCache();
-      cleanupDetailsCache();
-    }, 5 * 60 * 1000);
+    const interval = setInterval(
+      () => {
+        cleanupSearchCache();
+        cleanupDetailsCache();
+      },
+      5 * 60 * 1000
+    );
 
     return () => clearInterval(interval);
   }, [cleanupSearchCache, cleanupDetailsCache]);
@@ -51,31 +54,41 @@ export function useCacheManager() {
         entries: searchCache.size + detailsCache.size,
         totalHits: searchStats.totalHits + detailsStats.totalHits,
         totalMisses: searchStats.totalMisses + detailsStats.totalMisses,
-        overallHitRate: 
-          (searchStats.totalHits + detailsStats.totalHits) / 
-          Math.max(searchStats.totalHits + detailsStats.totalHits + searchStats.totalMisses + detailsStats.totalMisses, 1),
+        overallHitRate:
+          (searchStats.totalHits + detailsStats.totalHits) /
+          Math.max(
+            searchStats.totalHits +
+              detailsStats.totalHits +
+              searchStats.totalMisses +
+              detailsStats.totalMisses,
+            1
+          ),
       },
     };
   }, [getSearchCacheStats, getDetailsCacheStats, searchCache, detailsCache]);
 
   // Function to export cache data for debugging
   const exportCacheData = useCallback(() => {
-    const searchEntries = Array.from(searchCache.entries()).map(([key, value]) => ({
-      key,
-      timestamp: value.timestamp,
-      lastAccessed: value.lastAccessed,
-      totalResults: value.totalResults,
-      resultsCount: value.results.length,
-      pagesCount: value.pages.size,
-    }));
+    const searchEntries = Array.from(searchCache.entries()).map(
+      ([key, value]) => ({
+        key,
+        timestamp: value.timestamp,
+        lastAccessed: value.lastAccessed,
+        totalResults: value.totalResults,
+        resultsCount: value.results.length,
+        pagesCount: value.pages.size,
+      })
+    );
 
-    const detailsEntries = Array.from(detailsCache.entries()).map(([key, value]) => ({
-      key,
-      timestamp: value.timestamp,
-      lastAccessed: value.lastAccessed,
-      accessCount: value.accessCount,
-      title: value.movie.Title,
-    }));
+    const detailsEntries = Array.from(detailsCache.entries()).map(
+      ([key, value]) => ({
+        key,
+        timestamp: value.timestamp,
+        lastAccessed: value.lastAccessed,
+        accessCount: value.accessCount,
+        title: value.movie.Title,
+      })
+    );
 
     return {
       search: searchEntries,
@@ -104,4 +117,4 @@ export function useCacheManager() {
     exportCacheData,
     logCachePerformance,
   };
-} 
+}

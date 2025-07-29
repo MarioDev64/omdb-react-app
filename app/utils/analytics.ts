@@ -70,4 +70,4 @@ declare global {
     dataLayer: any[];
     gtag: (...args: any[]) => void;
   }
-} 
+}

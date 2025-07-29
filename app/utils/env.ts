@@ -7,12 +7,14 @@
  */
 export function getOmdbApiKey(): string {
   const apiKey = import.meta.env.VITE_OMDB_API_KEY;
-  
+
   if (!apiKey) {
     console.error('OMDB API key is not configured');
-    throw new Error('OMDB API key is not configured. Please check your environment variables.');
+    throw new Error(
+      'OMDB API key is not configured. Please check your environment variables.'
+    );
   }
-  
+
   return apiKey;
 }
 
@@ -48,4 +50,4 @@ export function getEnvironmentInfo() {
     hasApiKey: !!import.meta.env.VITE_OMDB_API_KEY,
     baseUrl: import.meta.env.BASE_URL,
   };
-} 
+}

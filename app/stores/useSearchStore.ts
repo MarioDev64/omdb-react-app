@@ -143,12 +143,12 @@ export const useSearchStore = create<SearchState>()(
         if (cached && Date.now() - cached.timestamp < cacheConfig.maxCacheAge) {
           // Update last accessed time
           cached.lastAccessed = Date.now();
-          
+
           // If requesting specific page, check if it's cached
           if (page > 1 && cached.pages.has(page)) {
             return cached.pages.get(page) || null;
           }
-          
+
           // For page 1, return main results
           if (page === 1) {
             return cached.results;
@@ -178,21 +178,21 @@ export const useSearchStore = create<SearchState>()(
       setCachedResults: (query, type, results, totalResults, page = 1) => {
         const { searchCache, getCacheKey, cacheConfig, cleanupCache } = get();
         const cacheKey = getCacheKey(query, type);
-        
+
         // Cleanup cache if it's getting too large
         if (searchCache.size >= cacheConfig.maxCacheSize) {
           cleanupCache();
         }
 
         const existing = searchCache.get(cacheKey);
-        
+
         if (existing) {
           // Update existing cache entry
           existing.results = page === 1 ? results : existing.results;
           existing.totalResults = totalResults;
           existing.timestamp = Date.now();
           existing.lastAccessed = Date.now();
-          
+
           // Cache specific page if not page 1
           if (page > 1 && existing.pages.size < cacheConfig.maxPagesPerQuery) {
             existing.pages.set(page, results);
@@ -203,7 +203,7 @@ export const useSearchStore = create<SearchState>()(
           if (page > 1) {
             pages.set(page, results);
           }
-          
+
           searchCache.set(cacheKey, {
             results: page === 1 ? results : [],
             totalResults,
@@ -220,16 +220,19 @@ export const useSearchStore = create<SearchState>()(
         const { searchCache, cacheConfig } = get();
         const now = Date.now();
         const entries = Array.from(searchCache.entries());
-        
+
         // Sort by last accessed time (LRU)
         entries.sort((a, b) => a[1].lastAccessed - b[1].lastAccessed);
-        
+
         // Remove oldest entries if cache is too large
         if (entries.length > cacheConfig.maxCacheSize) {
-          const toRemove = entries.slice(0, entries.length - cacheConfig.maxCacheSize);
+          const toRemove = entries.slice(
+            0,
+            entries.length - cacheConfig.maxCacheSize
+          );
           toRemove.forEach(([key]) => searchCache.delete(key));
         }
-        
+
         // Remove expired entries
         entries.forEach(([key, value]) => {
           if (now - value.timestamp > cacheConfig.maxCacheAge) {
@@ -243,14 +246,15 @@ export const useSearchStore = create<SearchState>()(
         const now = Date.now();
         let totalHits = 0;
         let totalMisses = 0;
-        
+
         // This is a simplified version - in a real app you'd track hits/misses
         searchCache.forEach(entry => {
-          if (now - entry.lastAccessed < 60000) { // Last minute
+          if (now - entry.lastAccessed < 60000) {
+            // Last minute
             totalHits++;
           }
         });
-        
+
         return {
           size: searchCache.size,
           hitRate: totalHits / Math.max(totalHits + totalMisses, 1),

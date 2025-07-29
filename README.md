@@ -114,7 +114,6 @@ This project is configured for automatic deployment to GitHub Pages:
    ```bash
    git push origin main
    ```
-   
 2. **GitHub Actions will automatically:**
    - Build the project
    - Run tests and linting
@@ -124,6 +123,7 @@ This project is configured for automatic deployment to GitHub Pages:
 #### **Manual Deployment**
 
 1. **Build for GitHub Pages:**
+
    ```bash
    npm run build:gh-pages
    ```
@@ -139,7 +139,7 @@ This project is configured for automatic deployment to GitHub Pages:
    - Go to your repository settings
    - Navigate to "Pages" section
    - Select "Deploy from a branch"
-   - Choose `gh-pages` branch
+   - Choose `production` branch
    - Save the configuration
 
 2. **Environment Variables:**
@@ -161,11 +161,13 @@ This project is configured for automatic deployment to GitHub Pages:
 To use a custom domain:
 
 1. **Add CNAME file:**
+
    ```bash
    echo "your-domain.com" > public/CNAME
    ```
 
 2. **Update package.json:**
+
    ```json
    {
      "homepage": "https://your-domain.com"
@@ -356,15 +358,17 @@ This application uses [Tailwind CSS](https://tailwindcss.com/) for modern and re
 The application implements a sophisticated caching system using Zustand:
 
 #### **Search Cache (`useSearchStore`)**
+
 - **Cache Size**: Maximum 50 queries
 - **Expiration**: 5 minutes
-- **Features**: 
+- **Features**:
   - Page-level caching (up to 10 pages per query)
   - LRU eviction with access tracking
   - Automatic cleanup every 5 minutes
   - Memory-efficient storage
 
 #### **Movie Details Cache (`useMovieDetailsStore`)**
+
 - **Cache Size**: Maximum 30 movies
 - **Expiration**: 10 minutes
 - **Features**:
@@ -374,6 +378,7 @@ The application implements a sophisticated caching system using Zustand:
   - Silent prefetch failures
 
 #### **Cache Management**
+
 - **Auto-cleanup**: Every 5 minutes
 - **Memory limits**: Configurable per store
 - **Statistics**: Hit rates and performance metrics
@@ -390,6 +395,7 @@ The application implements a sophisticated caching system using Zustand:
 ### 📊 **Cache Statistics**
 
 The application provides comprehensive cache statistics:
+
 - Cache hit/miss rates
 - Memory usage tracking
 - Performance metrics
