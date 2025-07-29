@@ -3,14 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "yarn --silent react-router build",
-    "dev": "yarn --silent react-router dev",
-    "start": "yarn --silent react-router-serve ./build/server/index.js",
+    "build": "npx react-router build",
+    "dev": "npx react-router dev",
+    "start": "npx react-router-serve ./build/server/index.js",
     "prepare": "husky",
     "commit": "cz",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "lint": "prettier --check . && yarn --silent react-router typegen && tsc --noEmit",
+    "lint": "prettier --check . && npx react-router typegen && tsc --noEmit",
     "netlify:dev": "netlify dev",
     "netlify:build": "yarn build",
     "netlify:deploy": "netlify deploy --prod"
