@@ -2,8 +2,8 @@ import { useCallback, useRef } from 'react';
 import { omdbService } from '../shared/services/OMDBService';
 import { useMovieDetailsStore } from '../stores/useMovieDetailsStore';
 
-// Minimum loading time (1 second)
-const MIN_LOADING_TIME = 1000;
+// Reduced minimum loading time for better UX
+const MIN_LOADING_TIME = 200;
 
 export function useMovieDetails() {
   const {
@@ -16,6 +16,7 @@ export function useMovieDetails() {
     clearMovie,
     getCachedMovie,
     setCachedMovie,
+    prefetchMovie,
   } = useMovieDetailsStore();
 
   const loadingStartTime = useRef<number | null>(null);
@@ -36,7 +37,7 @@ export function useMovieDetails() {
         return;
       }
 
-      // Check cache first
+      // Check cache first for instant loading
       const cached = getCachedMovie(imdbId);
       if (cached) {
         setMovie(cached);
@@ -62,7 +63,7 @@ export function useMovieDetails() {
             : 'Failed to load movie details'
         );
       } finally {
-        // Ensure minimum loading time
+        // Ensure minimum loading time for better UX
         const elapsed = Date.now() - (loadingStartTime.current || 0);
         const remaining = Math.max(0, MIN_LOADING_TIME - elapsed);
 
@@ -79,11 +80,31 @@ export function useMovieDetails() {
     clearMovie();
   }, [clearMovie]);
 
+  // Function to prefetch movie details
+  const prefetchMovieHandler = useCallback(
+    async (imdbId: string) => {
+      if (!imdbId) return;
+
+      // Don't prefetch if already cached
+      const cached = getCachedMovie(imdbId);
+      if (cached) return;
+
+      try {
+        await prefetchMovie(imdbId);
+      } catch (error) {
+        // Silently fail for prefetching
+        console.debug('Prefetch failed:', error);
+      }
+    },
+    [getCachedMovie, prefetchMovie]
+  );
+
   return {
     movie,
     loading,
     error,
     fetchMovieDetails,
     clearMovie: clearMovieHandler,
+    prefetchMovie: prefetchMovieHandler,
   };
 }
