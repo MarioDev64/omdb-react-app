@@ -68,11 +68,13 @@ This ensures SPA routing works correctly.
 ### **Local Development with Netlify CLI**
 
 1. **Install Netlify CLI:**
+
    ```bash
    npm install -g netlify-cli
    ```
 
 2. **Start development server:**
+
    ```bash
    npm run netlify:dev
    ```
@@ -104,6 +106,7 @@ Location: `netlify/functions/`
 Example: `hello.js` - Basic serverless function
 
 **Use cases:**
+
 - API proxies
 - Data processing
 - Authentication
@@ -116,6 +119,7 @@ Location: `netlify/edge-functions/`
 Example: `hello.js` - Edge function with geo-location
 
 **Benefits:**
+
 - Runs closer to users
 - Better performance
 - Global CDN deployment
@@ -251,4 +255,4 @@ The `netlify.toml` includes security headers:
 
 ---
 
-**Ready to deploy?** Click the deploy button above or follow the manual setup instructions! 
+**Ready to deploy?** Click the deploy button above or follow the manual setup instructions!
