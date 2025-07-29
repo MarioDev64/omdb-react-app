@@ -104,91 +104,52 @@ npm run dev
 
 ## 🌐 Deployment
 
-### 🚀 GitHub Pages
+### 🚀 Netlify
 
-This project is configured for automatic deployment to GitHub Pages:
+This project is configured for deployment to Netlify with full SSR support:
 
 #### **Automatic Deployment (Recommended)**
 
-1. **Push to main branch:**
-   ```bash
-   git push origin main
-   ```
-2. **GitHub Actions will automatically:**
-   - Build the project
-   - Run tests and linting
-   - Deploy to GitHub Pages
-   - Available at: `https://mariodev64.github.io/omdb-react-app`
+1. **Connect to Netlify:**
+   - Go to [Netlify](https://netlify.com)
+   - Sign up/Login with your GitHub account
+   - Click "New site from Git"
+   - Select your repository
+   - Configure build settings:
+     - **Build command**: `npm run build`
+     - **Publish directory**: `build/client`
+   - Click "Deploy site"
 
-#### **Manual Deployment**
+#### **Environment Variables**
 
-1. **Build for GitHub Pages:**
+Configure in Netlify Dashboard → Site settings → Environment variables:
 
-   ```bash
-   npm run build:gh-pages
-   ```
+- **VITE_OMDB_API_KEY**: Your OMDB API key
+- **VITE_GA_MEASUREMENT_ID**: Your Google Analytics Measurement ID (optional)
 
-2. **Deploy manually:**
-   ```bash
-   npm run deploy
-   ```
+#### **Custom Domain**
 
-#### **GitHub Pages Configuration**
+1. **Add custom domain:**
+   - Go to Site settings → Domain management
+   - Add your custom domain
+   - Configure DNS settings as instructed
 
-1. **Enable GitHub Pages:**
-   - Go to your repository settings
-   - Navigate to "Pages" section
-   - Select "Deploy from a branch"
-   - Choose `production` branch
-   - Save the configuration
+#### **Serverless Functions**
 
-2. **Environment Variables:**
-   - Add your OMDB API key as a repository secret
-   - Name: `VITE_OMDB_API_KEY`
-   - Value: Your OMDB API key
-   - Optional: Add Google Analytics ID
-   - Name: `VITE_GA_MEASUREMENT_ID`
-   - Value: Your Google Analytics Measurement ID
+The project includes support for Netlify Functions:
 
-3. **GitHub Actions Permissions:**
-   - Go to repository settings
-   - Navigate to "Actions" → "General"
-   - Enable "Read and write permissions"
-   - Save the configuration
+- **Location**: `netlify/functions/`
+- **Example**: `hello.js` - Basic serverless function
+- **Use cases**: API proxies, data processing, authentication
 
-#### **Custom Domain (Optional)**
+#### **Advanced Features**
 
-To use a custom domain:
-
-1. **Add CNAME file:**
-
-   ```bash
-   echo "your-domain.com" > public/CNAME
-   ```
-
-2. **Update package.json:**
-
-   ```json
-   {
-     "homepage": "https://your-domain.com"
-   }
-   ```
-
-3. **Update manifest.json:**
-   ```json
-   {
-     "start_url": "/"
-   }
-   ```
-
-#### **PWA Features**
-
-The application includes Progressive Web App features:
-
-- **Manifest**: App-like installation
-- **Service Worker**: Offline caching
-- **Responsive Design**: Works on all devices
-- **Fast Loading**: Optimized for performance
+- **SSR Support**: Full server-side rendering
+- **Edge Functions**: Global CDN deployment
+- **Form Handling**: Built-in form processing
+- **Redirects**: SPA routing configuration
+- **Headers**: Security and performance optimization
+- **Analytics**: Built-in analytics dashboard
 
 ## 🛠️ Development Scripts
 
