@@ -20,7 +20,13 @@ export class OMDBService extends HttpClient {
   private apiKey: string;
 
   constructor() {
-    super('', 'http://www.omdbapi.com'); // Pass empty path and correct base URL without trailing slash
+    // Use proxy in production to avoid CORS issues
+    const isProduction = import.meta.env.PROD;
+    const baseUrl = isProduction
+      ? '/.netlify/functions/omdb-proxy'
+      : 'http://www.omdbapi.com';
+
+    super('', baseUrl);
     this.apiKey = import.meta.env.VITE_OMDB_API_KEY || '';
 
     if (!this.apiKey) {
@@ -39,14 +45,27 @@ export class OMDBService extends HttpClient {
   private buildUrl(
     params: Record<string, string | number | undefined>
   ): string {
-    const searchParams = new URLSearchParams({
-      apikey: this.apiKey,
-      ...Object.fromEntries(
-        Object.entries(params).filter(([_, value]) => value !== undefined)
-      ),
-    });
+    const isProduction = import.meta.env.PROD;
 
-    return `?${searchParams.toString()}`;
+    if (isProduction) {
+      // In production, use the proxy - API key is handled server-side
+      const filteredParams = Object.fromEntries(
+        Object.entries(params)
+          .filter(([_, value]) => value !== undefined)
+          .map(([key, value]) => [key, String(value)])
+      );
+      const searchParams = new URLSearchParams(filteredParams);
+      return `?${searchParams.toString()}`;
+    } else {
+      // In development, include API key in URL
+      const searchParams = new URLSearchParams({
+        apikey: this.apiKey,
+        ...Object.fromEntries(
+          Object.entries(params).filter(([_, value]) => value !== undefined)
+        ),
+      });
+      return `?${searchParams.toString()}`;
+    }
   }
 
   /**
