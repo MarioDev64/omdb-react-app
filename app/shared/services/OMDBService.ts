@@ -22,8 +22,7 @@ export class OMDBService extends HttpClient {
   constructor() {
     // Use proxy in production to avoid CORS issues
     const isProduction = import.meta.env.PROD;
-    const isNetlify = window.location.hostname.includes('netlify.app');
-    const baseUrl = (isProduction || isNetlify)
+    const baseUrl = isProduction
       ? '/.netlify/functions/omdb-proxy'
       : 'http://www.omdbapi.com';
 
@@ -32,9 +31,8 @@ export class OMDBService extends HttpClient {
 
     console.log('🔧 OMDBService initialized:', {
       isProduction,
-      isNetlify,
       baseUrl,
-      hostname: window.location.hostname
+      env: import.meta.env.MODE,
     });
 
     if (!this.apiKey) {
@@ -54,11 +52,9 @@ export class OMDBService extends HttpClient {
     params: Record<string, string | number | undefined>
   ): string {
     const isProduction = import.meta.env.PROD;
-    const isNetlify = window.location.hostname.includes('netlify.app');
-    const useProxy = isProduction || isNetlify;
 
-    if (useProxy) {
-      // In production/Netlify, use the proxy - API key is handled server-side
+    if (isProduction) {
+      // In production, use the proxy - API key is handled server-side
       const filteredParams = Object.fromEntries(
         Object.entries(params)
           .filter(([_, value]) => value !== undefined)
