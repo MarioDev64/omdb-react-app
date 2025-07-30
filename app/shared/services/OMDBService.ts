@@ -98,6 +98,18 @@ export class OMDBService extends HttpClient {
 
       // Check if the response indicates an error
       if (response.Response === 'False') {
+        // Check if it's a "not found" error (status 200 but no results)
+        if (
+          response.Error === 'Movie not found!' ||
+          response.Error === 'Series not found!'
+        ) {
+          // Return empty results instead of throwing error
+          return {
+            Response: 'True',
+            Search: [],
+            totalResults: 0,
+          };
+        }
         throw new Error(response.Error || 'Search failed');
       }
 
@@ -126,6 +138,13 @@ export class OMDBService extends HttpClient {
 
       // Check if the response indicates an error
       if (response.Response === 'False') {
+        // Check if it's a "not found" error (status 200 but no results)
+        if (
+          response.Error === 'Movie not found!' ||
+          response.Error === 'Series not found!'
+        ) {
+          throw new Error('NOT_FOUND');
+        }
         throw new Error(response.Error || 'Failed to get movie details');
       }
 

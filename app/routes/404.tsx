@@ -5,14 +5,20 @@ import { AppLayout } from '../components/layout/AppLayout';
 export function meta() {
   return [
     { title: 'Page Not Found - OMDB React App' },
-    { name: 'description', content: 'The page you are looking for could not be found.' },
+    {
+      name: 'description',
+      content: 'The page you are looking for could not be found.',
+    },
     { name: 'robots', content: 'noindex, nofollow' },
     // Open Graph tags
     { property: 'og:title', content: 'Page Not Found - OMDB React App' },
-    { property: 'og:description', content: 'The page you are looking for could not be found.' },
+    {
+      property: 'og:description',
+      content: 'The page you are looking for could not be found.',
+    },
     { property: 'og:type', content: 'website' },
     // Canonical URL
-    { tagName: 'link', rel: 'canonical', href: '/404' }
+    { tagName: 'link', rel: 'canonical', href: '/404' },
   ];
 }
 
@@ -48,7 +54,8 @@ export default function NotFoundPage() {
               Page Not Found
             </h2>
             <p className="text-gray-500 dark:text-gray-400">
-              Sorry, we couldn't find the page you're looking for. The page might have been moved, deleted, or you entered the wrong URL.
+              Sorry, we couldn't find the page you're looking for. The page
+              might have been moved, deleted, or you entered the wrong URL.
             </p>
           </div>
 
@@ -84,4 +91,4 @@ export default function NotFoundPage() {
       </div>
     </AppLayout>
   );
-} 
+}
