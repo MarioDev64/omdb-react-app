@@ -25,6 +25,35 @@ export function MovieList({
   className = '',
 }: MovieListProps) {
   if (error) {
+    // Check if it's a NOT_FOUND error
+    if (error === 'NOT_FOUND') {
+      return (
+        <div className={`text-center py-12 ${className}`}>
+          <div className="text-gray-500 dark:text-gray-400">
+            <svg
+              className="mx-auto h-12 w-12 mb-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            <h3 className="text-lg font-medium mb-2 text-gray-900 dark:text-white">
+              No movies or series found
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Try with different search terms
+            </p>
+          </div>
+        </div>
+      );
+    }
+    
     return (
       <div className={className}>
         <ErrorMessage message={error} onRetry={onRetry} />

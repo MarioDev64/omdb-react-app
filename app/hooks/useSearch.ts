@@ -90,11 +90,17 @@ export function useSearch() {
         }
       } catch (error) {
         console.error('Search error:', error);
-        setError(
-          error instanceof Error
-            ? error.message
-            : 'An error occurred during search'
-        );
+        
+        // Check if it's a NOT_FOUND error
+        if (error instanceof Error && error.message === 'NOT_FOUND') {
+          setError('NOT_FOUND');
+        } else {
+          setError(
+            error instanceof Error
+              ? error.message
+              : 'An error occurred during search'
+          );
+        }
       } finally {
         // Reduced loading time for better UX
         setTimeout(() => {
