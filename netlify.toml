@@ -18,8 +18,15 @@
   # Build environment
   NODE_ENV = "production"
 
-# Redirects for React Router SPA routing
+# Redirects for React Router with SSR
 [[redirects]]
+  # Dynamic movie routes
+  from = "/movie/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  # All other routes
   from = "/*"
   to = "/index.html"
   status = 200
@@ -42,6 +49,15 @@
 # Cache API responses for 5 minutes
 [[headers]]
   for = "/api/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+
+# Headers for dynamic movie routes
+[[headers]]
+  for = "/movie/*"
   [headers.values]
     Cache-Control = "public, max-age=300"
     X-Frame-Options = "DENY"
