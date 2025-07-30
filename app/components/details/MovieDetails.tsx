@@ -19,9 +19,12 @@ import {
   TagIcon,
   PencilIcon,
   UserIcon,
+  SunIcon,
+  MoonIcon,
 } from '@heroicons/react/24/outline';
 import { MovieDetailsSkeleton } from '../ui/MovieDetailsSkeleton';
 import { ErrorMessage } from '../ui/ErrorMessage';
+import { useTheme } from '../../contexts/ThemeContext';
 import type { MovieDetails as MovieDetailsType } from '../../shared/types/omdb';
 
 interface MovieDetailsProps {
@@ -39,6 +42,7 @@ export function MovieDetails({
   onRetry,
   className = '',
 }: MovieDetailsProps) {
+  const { isDarkMode, toggleDarkMode } = useTheme();
   if (loading) {
     return <MovieDetailsSkeleton className={className} />;
   }
@@ -146,9 +150,9 @@ export function MovieDetails({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Back Button */}
+      {/* Back Button and Theme Toggle */}
       <motion.div
-        className="mb-6"
+        className="mb-6 flex justify-between items-center"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
@@ -160,6 +164,22 @@ export function MovieDetails({
         >
           <ArrowLeftIcon className="w-10 h-10" />
         </Link>
+
+        {/* Theme Toggle Button */}
+        <motion.button
+          onClick={toggleDarkMode}
+          className="inline-flex cursor-pointer items-center justify-center w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 transform hover:scale-110"
+          aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          {isDarkMode ? (
+            <SunIcon className="w-6 h-6 text-yellow-500" />
+          ) : (
+            <MoonIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+          )}
+        </motion.button>
       </motion.div>
 
       <motion.div
