@@ -35,12 +35,57 @@ export class ErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError) {
+      // Check if it's a "Movie not found" error
+      if (this.state.error?.message === 'Movie not found!' || this.state.error?.message === 'NOT_FOUND') {
+        return <MovieNotFoundFallback />;
+      }
+
       const FallbackComponent = this.props.fallback || DefaultErrorFallback;
       return <FallbackComponent error={this.state.error} />;
     }
 
     return this.props.children;
   }
+}
+
+function MovieNotFoundFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-md w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+        <div className="text-center">
+          <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100 dark:bg-yellow-900">
+            <svg
+              className="h-6 w-6 text-yellow-600 dark:text-yellow-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </div>
+          <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
+            Movie not found
+          </h3>
+          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+            The movie or series you are looking for could not be found
+          </p>
+          <div className="mt-6">
+            <button
+              onClick={() => (window.location.href = '/')}
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Back to Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function DefaultErrorFallback({ error }: { error?: Error }) {

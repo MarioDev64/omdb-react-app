@@ -18,30 +18,14 @@ export function MovieCard({
   const { prefetchMovie } = useMovieDetails();
   const prefetchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case 'movie':
-        return '🎬';
-      case 'series':
-        return '📺';
-      case 'episode':
-        return '📺';
-      default:
-        return '🎭';
-    }
-  };
-
-  const getTypeLabel = (type: string) => {
-    switch (type) {
-      case 'movie':
-        return 'Movie';
-      case 'series':
-        return 'Series';
-      case 'episode':
-        return 'Episode';
-      default:
-        return 'Other';
-    }
+  const getTypeInfo = (type: string) => {
+    const typeMap = {
+      movie: { icon: '🎬', label: 'Movie' },
+      series: { icon: '📺', label: 'Series' },
+      episode: { icon: '📺', label: 'Episode' },
+    };
+    
+    return typeMap[type as keyof typeof typeMap] || { icon: '🎭', label: 'Other' };
   };
 
   const handleMouseEnter = () => {
@@ -115,9 +99,9 @@ export function MovieCard({
             )}
           </div>
 
-          {/* Badge de tipo */}
+          {/* Type badge */}
           <div className="absolute top-2 right-2 bg-black bg-opacity-75 text-white text-xs px-2 py-1 rounded-full">
-            {getTypeIcon(movie.Type)} {getTypeLabel(movie.Type)}
+            {getTypeInfo(movie.Type).icon} {getTypeInfo(movie.Type).label}
           </div>
         </div>
 
