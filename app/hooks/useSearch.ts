@@ -31,7 +31,7 @@ export function useSearch() {
   } = useSearchStore();
 
   // Debounce to avoid excessive API calls
-  const debouncedQuery = useDebounce(searchQuery, 500);
+  const debouncedQuery = useDebounce(searchQuery, 1000);
 
   // Function to perform search
   const performSearch = useCallback(
@@ -92,7 +92,10 @@ export function useSearch() {
         console.error('Search error:', error);
 
         // Check if it's a "Movie not found" error
-        if (error instanceof Error && (error.message === 'Movie not found!' || error.message === 'Series not found!')) {
+        if (
+          error instanceof Error &&
+          error.message === 'NOT_FOUND'
+        ) {
           setError('NOT_FOUND');
         } else {
           setError(

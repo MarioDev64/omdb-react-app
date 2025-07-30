@@ -36,10 +36,10 @@ export class ErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       // Check if it's a "Movie not found" error
-      if (this.state.error?.message === 'Movie not found!') {
+      if (this.state.error?.message === 'Movie not found!' || this.state.error?.message === 'NOT_FOUND') {
         return <MovieNotFoundFallback />;
       }
-      
+
       const FallbackComponent = this.props.fallback || DefaultErrorFallback;
       return <FallbackComponent error={this.state.error} />;
     }
@@ -76,7 +76,7 @@ function MovieNotFoundFallback() {
           </p>
           <div className="mt-6">
             <button
-              onClick={() => window.location.href = '/'}
+              onClick={() => (window.location.href = '/')}
               className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Back to Search

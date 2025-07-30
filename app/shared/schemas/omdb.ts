@@ -15,8 +15,8 @@ export const searchResultSchema = z.object({
  * Schema for search response
  */
 export const searchResponseSchema = z.object({
-  Search: z.array(searchResultSchema),
-  totalResults: z.string().transform(val => parseInt(val, 10)),
+  Search: z.array(searchResultSchema).optional(),
+  totalResults: z.string().transform(val => parseInt(val, 10)).optional(),
   Response: z.enum(['True', 'False']),
   Error: z.string().optional(),
 });
