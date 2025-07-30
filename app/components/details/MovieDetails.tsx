@@ -362,7 +362,7 @@ export function MovieDetails({
               <div className="space-y-6">
                 {movie.Genre && movie.Genre !== 'N/A' && (
                   <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-200 dark:border-blue-800">
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                       <TagIcon className="w-5 h-5 text-blue-500" />
                       Genre
                     </h4>
@@ -374,7 +374,7 @@ export function MovieDetails({
 
                 {movie.Director && movie.Director !== 'N/A' && (
                   <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-xl border border-green-200 dark:border-green-800">
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                       <VideoCameraIcon className="w-5 h-5 text-green-500" />
                       Director
                     </h4>
@@ -386,7 +386,7 @@ export function MovieDetails({
 
                 {movie.Writer && movie.Writer !== 'N/A' && (
                   <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-xl border border-purple-200 dark:border-purple-800">
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                       <PencilIcon className="w-5 h-5 text-purple-500" />
                       Writer
                     </h4>
@@ -401,7 +401,7 @@ export function MovieDetails({
               <div className="space-y-6">
                 {movie.Actors && movie.Actors !== 'N/A' && (
                   <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-xl border border-orange-200 dark:border-orange-800">
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                       <UserGroupIcon className="w-5 h-5 text-orange-500" />
                       Cast
                     </h4>
@@ -413,7 +413,7 @@ export function MovieDetails({
 
                 {movie.Production && movie.Production !== 'N/A' && (
                   <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-xl border border-indigo-200 dark:border-indigo-800">
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                       <BuildingOfficeIcon className="w-5 h-5 text-indigo-500" />
                       Production
                     </h4>
@@ -440,7 +440,7 @@ export function MovieDetails({
                 <div className="grid md:grid-cols-3 gap-6">
                   {movie.BoxOffice && movie.BoxOffice !== 'N/A' && (
                     <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-xl border border-emerald-200 dark:border-emerald-800">
-                      <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                         <CurrencyDollarIcon className="w-5 h-5 text-emerald-500" />
                         Box Office
                       </h4>
@@ -451,7 +451,7 @@ export function MovieDetails({
                   )}
                   {movie.DVD && movie.DVD !== 'N/A' && (
                     <div className="bg-pink-50 dark:bg-pink-900/20 p-4 rounded-xl border border-pink-200 dark:border-pink-800">
-                      <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                         <ComputerDesktopIcon className="w-5 h-5 text-pink-500" />
                         DVD Release
                       </h4>
@@ -462,7 +462,7 @@ export function MovieDetails({
                   )}
                   {movie.Website && movie.Website !== 'N/A' && (
                     <div className="bg-cyan-50 dark:bg-cyan-900/20 p-4 rounded-xl border border-cyan-200 dark:border-cyan-800">
-                      <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                         <GlobeAltIcon className="w-5 h-5 text-cyan-500" />
                         Official Website
                       </h4>
