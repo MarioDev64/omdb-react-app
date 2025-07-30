@@ -1,6 +1,6 @@
 [build]
   # Build command for React Router
-  command = "yarn install && npx react-router build"
+  command = "npm run build"
   
   # Publish directory (React Router build output)
   publish = "build/client"
