@@ -4,22 +4,31 @@
   port = 5173
   publish = "build/client"
   functions = "netlify/functions"
+  edge_functions = "netlify/edge-functions"
 
 [dev.environment]
   # Development environment variables
+  NODE_ENV = "development"
   VITE_OMDB_API_KEY = "your_omdb_api_key_here"
   VITE_GA_MEASUREMENT_ID = "your_ga_measurement_id_here"
 
-# Development redirects
+# Development redirects for React Router SPA
 [[dev.redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# Development headers
+# Development security headers
 [[dev.headers]]
   for = "/*"
   [dev.headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff" 
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Development cache headers for assets (no cache for development)
+[[dev.headers]]
+  for = "/assets/*"
+  [dev.headers.values]
+    Cache-Control = "no-cache"

@@ -5,7 +5,7 @@
   # Publish directory (React Router build output)
   publish = "build/client"
   
-  # Functions directory (if we add serverless functions later)
+  # Functions directory
   functions = "netlify/functions"
   
   # Edge Functions directory
@@ -18,13 +18,13 @@
   # Build environment
   NODE_ENV = "production"
 
-# Redirects for SPA routing
+# Redirects for React Router SPA routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# Headers for better performance and security
+# Security headers for all pages
 [[headers]]
   for = "/*"
   [headers.values]
@@ -33,39 +33,27 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-# Cache static assets
+# Cache static assets aggressively
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Cache API responses
+# Cache API responses for 5 minutes
 [[headers]]
   for = "/api/*"
   [headers.values]
     Cache-Control = "public, max-age=300"
-
-# Security headers for API routes
-[[headers]]
-  for = "/api/*"
-  [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
 
-# Environment variables (will be set in Netlify dashboard)
+# Production environment variables
 [context.production.environment]
   VITE_OMDB_API_KEY = "your_omdb_api_key_here"
   VITE_GA_MEASUREMENT_ID = "your_ga_measurement_id_here"
 
+# Deploy preview environment variables
 [context.deploy-preview.environment]
   VITE_OMDB_API_KEY = "your_omdb_api_key_here"
   VITE_GA_MEASUREMENT_ID = "your_ga_measurement_id_here"
-
-# Plugin configuration (commented out - not needed for this app)
-# [[plugins]]
-#   package = "@netlify/plugin-lighthouse"
-
-# Form handling (commented out - not needed for this app)
-# [[plugins]]
-#   package = "@netlify/plugin-forms" 
