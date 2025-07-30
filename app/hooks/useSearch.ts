@@ -90,7 +90,7 @@ export function useSearch() {
         }
       } catch (error) {
         console.error('Search error:', error);
-        
+
         // Check if it's a NOT_FOUND error
         if (error instanceof Error && error.message === 'NOT_FOUND') {
           setError('NOT_FOUND');

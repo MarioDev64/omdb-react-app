@@ -53,7 +53,7 @@ export function MovieList({
         </div>
       );
     }
-    
+
     return (
       <div className={className}>
         <ErrorMessage message={error} onRetry={onRetry} />
