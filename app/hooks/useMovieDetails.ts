@@ -57,11 +57,17 @@ export function useMovieDetails() {
         setMovie(movieDetails);
       } catch (error) {
         console.error('Movie details error:', error);
-        setError(
-          error instanceof Error
-            ? error.message
-            : 'Failed to load movie details'
-        );
+
+        // Check if it's a NOT_FOUND error
+        if (error instanceof Error && error.message === 'NOT_FOUND') {
+          setError('NOT_FOUND');
+        } else {
+          setError(
+            error instanceof Error
+              ? error.message
+              : 'Failed to load movie details'
+          );
+        }
       } finally {
         // Ensure minimum loading time for better UX
         const elapsed = Date.now() - (loadingStartTime.current || 0);

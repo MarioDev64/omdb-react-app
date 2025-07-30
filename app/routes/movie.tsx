@@ -8,13 +8,19 @@ import { AppLayout } from '../components/layout/AppLayout';
 export function meta({ params }: { params: { id: string } }) {
   return [
     { title: `Movie Details - OMDB React App` },
-    { name: 'description', content: `Complete details of the movie with ID ${params.id}` },
+    {
+      name: 'description',
+      content: `Complete details of the movie with ID ${params.id}`,
+    },
     // Open Graph tags for SEO
     { property: 'og:title', content: `Movie Details - OMDB React App` },
-    { property: 'og:description', content: `Complete details of the movie with ID ${params.id}` },
+    {
+      property: 'og:description',
+      content: `Complete details of the movie with ID ${params.id}`,
+    },
     { property: 'og:type', content: 'website' },
     // Canonical URL
-    { tagName: 'link', rel: 'canonical', href: `/movie/${params.id}` }
+    { tagName: 'link', rel: 'canonical', href: `/movie/${params.id}` },
   ];
 }
 

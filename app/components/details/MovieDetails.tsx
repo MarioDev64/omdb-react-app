@@ -44,6 +44,29 @@ export function MovieDetails({
   }
 
   if (error) {
+    // Check if it's a NOT_FOUND error
+    if (error === 'NOT_FOUND') {
+      return (
+        <div className={`text-center py-12 ${className}`}>
+          <div className="text-gray-500 dark:text-gray-400">
+            <h3 className="text-lg font-medium mb-2 text-gray-900 dark:text-white">
+              Movie not found
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              The movie you are looking for could not be found
+            </p>
+            <Link
+              to="/"
+              className="inline-flex items-center mt-4 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+            >
+              <ArrowLeftIcon className="w-4 h-4 mr-2" />
+              Back to Search
+            </Link>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className={className}>
         <ErrorMessage message={error} onRetry={onRetry} />
