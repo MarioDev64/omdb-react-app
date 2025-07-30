@@ -32,7 +32,7 @@ export function Header() {
             {isDarkMode ? (
               <>
                 <SunIcon className="w-5 h-5 text-yellow-500" />
-                <span className="text-sm font-medium text-gray-700 transition-colors duration-200">
+                <span className="text-sm font-medium text-white transition-colors duration-200">
                   Light Mode
                 </span>
               </>

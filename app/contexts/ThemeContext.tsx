@@ -28,11 +28,25 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   });
 
   useEffect(() => {
-    // Apply theme to document
+    // Apply theme to document immediately
+    const applyTheme = () => {
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    };
+
+    // Apply theme immediately
+    applyTheme();
+
+    // Also apply to body for better mobile support
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
     }
   }, [isDarkMode]);
 

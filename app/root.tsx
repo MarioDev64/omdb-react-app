@@ -33,6 +33,39 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {/* Prevent theme flash on mobile devices */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var darkMode = localStorage.getItem('darkMode');
+                  if (darkMode !== null) {
+                    var isDark = JSON.parse(darkMode);
+                    if (isDark) {
+                      document.documentElement.classList.add('dark');
+                      document.documentElement.setAttribute('data-theme', 'dark');
+                      document.body.classList.add('dark');
+                    } else {
+                      document.documentElement.classList.remove('dark');
+                      document.documentElement.setAttribute('data-theme', 'light');
+                      document.body.classList.remove('dark');
+                    }
+                  } else {
+                    // Check system preference
+                    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                      document.documentElement.classList.add('dark');
+                      document.documentElement.setAttribute('data-theme', 'dark');
+                      document.body.classList.add('dark');
+                    }
+                  }
+                } catch (e) {
+                  console.warn('Error applying theme:', e);
+                }
+              })();
+            `,
+          }}
+        />
       </head>
       <body>
         <AppErrorBoundary>
