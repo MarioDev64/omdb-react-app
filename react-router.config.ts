@@ -1,8 +1,8 @@
 import type { Config } from '@react-router/dev/config';
 
 export default {
-  // Enable SSR for Netlify
-  ssr: true,
+  // Disable SSR to avoid issues with dynamic routes
+  ssr: false,
 
   // Prerender for better SEO (only static routes)
   prerender: ['/'],
