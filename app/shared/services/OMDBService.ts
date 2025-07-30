@@ -103,8 +103,8 @@ export class OMDBService extends HttpClient {
           response.Error === 'Movie not found!' ||
           response.Error === 'Series not found!'
         ) {
-          // Throw NOT_FOUND error instead of returning empty results
-          throw new Error('NOT_FOUND');
+          // Throw the original error message for ErrorBoundary to handle
+          throw new Error(response.Error);
         }
         throw new Error(response.Error || 'Search failed');
       }

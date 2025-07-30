@@ -91,8 +91,8 @@ export function useSearch() {
       } catch (error) {
         console.error('Search error:', error);
 
-        // Check if it's a NOT_FOUND error
-        if (error instanceof Error && error.message === 'NOT_FOUND') {
+        // Check if it's a "Movie not found" error
+        if (error instanceof Error && (error.message === 'Movie not found!' || error.message === 'Series not found!')) {
           setError('NOT_FOUND');
         } else {
           setError(
