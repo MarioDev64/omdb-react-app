@@ -36,7 +36,10 @@ export class ErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       // Check if it's a "Movie not found" error
-      if (this.state.error?.message === 'Movie not found!' || this.state.error?.message === 'NOT_FOUND') {
+      if (
+        this.state.error?.message === 'Movie not found!' ||
+        this.state.error?.message === 'NOT_FOUND'
+      ) {
         return <MovieNotFoundFallback />;
       }
 

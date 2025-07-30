@@ -33,25 +33,32 @@ export function SearchInput({
     onClear();
   };
 
-  const getFilterButtonClasses = (buttonType: SearchParams['type'], currentType: SearchParams['type']) => {
+  const getFilterButtonClasses = (
+    buttonType: SearchParams['type'],
+    currentType: SearchParams['type']
+  ) => {
     const isActive = buttonType === currentType;
-    const baseClasses = 'px-6 py-3 text-sm font-medium rounded-xl border-2 transition-all duration-300';
-    
+    const baseClasses =
+      'px-6 py-3 text-sm font-medium rounded-xl border-2 transition-all duration-300';
+
     if (isActive) {
       const colorMap = {
-        undefined: 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-500/30 dark:shadow-blue-400/30',
-        movie: 'bg-green-600 text-white border-green-600 shadow-lg shadow-green-500/30 dark:shadow-green-400/30',
-        series: 'bg-purple-600 text-white border-purple-600 shadow-lg shadow-purple-500/30 dark:shadow-purple-400/30',
+        undefined:
+          'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-500/30 dark:shadow-blue-400/30',
+        movie:
+          'bg-green-600 text-white border-green-600 shadow-lg shadow-green-500/30 dark:shadow-green-400/30',
+        series:
+          'bg-purple-600 text-white border-purple-600 shadow-lg shadow-purple-500/30 dark:shadow-purple-400/30',
       };
       return `${baseClasses} ${colorMap[buttonType as keyof typeof colorMap]}`;
     }
-    
+
     const hoverColorMap = {
       undefined: 'hover:border-blue-300 dark:hover:border-blue-600',
       movie: 'hover:border-green-300 dark:hover:border-green-600',
       series: 'hover:border-purple-300 dark:hover:border-purple-600',
     };
-    
+
     return `${baseClasses} bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 ${hoverColorMap[buttonType as keyof typeof hoverColorMap]} shadow-md hover:shadow-lg`;
   };
 

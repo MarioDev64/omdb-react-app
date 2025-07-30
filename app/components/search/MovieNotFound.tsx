@@ -18,4 +18,4 @@ export function MovieNotFound({ className = '' }: MovieNotFoundProps) {
       </div>
     </div>
   );
-} 
+}

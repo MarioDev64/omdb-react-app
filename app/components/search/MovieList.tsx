@@ -53,14 +53,14 @@ function ResultsCount({ totalResults }: { totalResults: number }) {
 }
 
 // Load more button component
-function LoadMoreButton({ 
-  onLoadMore, 
-  loading, 
-  hasMore 
-}: { 
-  onLoadMore: () => void; 
-  loading: boolean; 
-  hasMore: boolean; 
+function LoadMoreButton({
+  onLoadMore,
+  loading,
+  hasMore,
+}: {
+  onLoadMore: () => void;
+  loading: boolean;
+  hasMore: boolean;
 }) {
   if (!hasMore) return null;
 
@@ -122,16 +122,20 @@ export function MovieList({
   return (
     <div className={className}>
       <ResultsCount totalResults={totalResults} />
-      
+
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {movies.map((movie, index) => (
           <MovieCard key={movie.imdbID} movie={movie} index={index} />
         ))}
-        
+
         {loading && movies.length > 0 && hasMore && <LoadingSkeleton />}
       </div>
 
-      <LoadMoreButton onLoadMore={onLoadMore} loading={loading} hasMore={hasMore} />
+      <LoadMoreButton
+        onLoadMore={onLoadMore}
+        loading={loading}
+        hasMore={hasMore}
+      />
     </div>
   );
 }
