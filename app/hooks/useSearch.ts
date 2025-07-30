@@ -92,10 +92,7 @@ export function useSearch() {
         console.error('Search error:', error);
 
         // Check if it's a "Movie not found" error
-        if (
-          error instanceof Error &&
-          error.message === 'NOT_FOUND'
-        ) {
+        if (error instanceof Error && error.message === 'NOT_FOUND') {
           setError('NOT_FOUND');
         } else {
           setError(

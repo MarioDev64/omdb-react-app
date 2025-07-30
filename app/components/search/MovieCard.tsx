@@ -24,8 +24,10 @@ export function MovieCard({
       series: { icon: '📺', label: 'Series' },
       episode: { icon: '📺', label: 'Episode' },
     };
-    
-    return typeMap[type as keyof typeof typeMap] || { icon: '🎭', label: 'Other' };
+
+    return (
+      typeMap[type as keyof typeof typeMap] || { icon: '🎭', label: 'Other' }
+    );
   };
 
   const handleMouseEnter = () => {

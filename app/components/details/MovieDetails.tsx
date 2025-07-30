@@ -155,7 +155,7 @@ export function MovieDetails({
       >
         <Link
           to="/"
-          className="inline-flex items-center justify-center w-16 h-16 rounded-full text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 transform hover:scale-110 hover:rotate-12"
+          className="inline-flex items-center justify-center w-16 h-16 rounded-full text-gray-700 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 transform hover:scale-110 hover:rotate-12"
           aria-label="Go back to search"
         >
           <ArrowLeftIcon className="w-10 h-10" />
@@ -262,7 +262,7 @@ export function MovieDetails({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.7 }}
               >
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-800 mb-4 flex items-center gap-2">
                   <StarIcon className="w-5 h-5 text-yellow-500" />
                   Ratings & Reviews
                 </h3>
@@ -270,7 +270,7 @@ export function MovieDetails({
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <StarIcon className="w-5 h-5 text-yellow-500" />
-                      <span className="font-semibold text-gray-900 dark:text-white">
+                      <span className="font-semibold text-gray-900 dark:text-gray-800">
                         IMDb Rating
                       </span>
                     </div>
@@ -282,10 +282,10 @@ export function MovieDetails({
                   </div>
                   {movie.imdbVotes && movie.imdbVotes !== 'N/A' && (
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">
+                      <span className="text-gray-600 dark:text-gray-800 font-bold">
                         Total Votes
                       </span>
-                      <span className="font-semibold text-gray-900 dark:text-white">
+                      <span className="font-semibold text-gray-900 dark:text-gray-800">
                         {parseInt(movie.imdbVotes).toLocaleString()}
                       </span>
                     </div>
@@ -294,7 +294,7 @@ export function MovieDetails({
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <ChartBarIcon className="w-5 h-5 text-green-500" />
-                        <span className="font-semibold text-gray-900 dark:text-white">
+                        <span className="font-semibold text-gray-900 dark:text-gray-800">
                           Metascore
                         </span>
                       </div>
@@ -322,7 +322,7 @@ export function MovieDetails({
                   Synopsis
                 </h3>
                 <div className="bg-gray-50 dark:bg-gray-700/50 p-6 rounded-xl border border-gray-200 dark:border-gray-600">
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+                  <p className="text-gray-700 dark:text-gray-400 leading-relaxed text-lg">
                     {movie.Plot}
                   </p>
                 </div>
@@ -340,11 +340,11 @@ export function MovieDetails({
               <div className="space-y-6">
                 {movie.Genre && movie.Genre !== 'N/A' && (
                   <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-200 dark:border-blue-800">
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
                       <TagIcon className="w-5 h-5 text-blue-500" />
                       Genre
                     </h4>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-gray-700 dark:text-gray-400">
                       {movie.Genre}
                     </p>
                   </div>
@@ -352,11 +352,11 @@ export function MovieDetails({
 
                 {movie.Director && movie.Director !== 'N/A' && (
                   <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-xl border border-green-200 dark:border-green-800">
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
                       <VideoCameraIcon className="w-5 h-5 text-green-500" />
                       Director
                     </h4>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-gray-700 dark:text-gray-400">
                       {movie.Director}
                     </p>
                   </div>
@@ -364,11 +364,11 @@ export function MovieDetails({
 
                 {movie.Writer && movie.Writer !== 'N/A' && (
                   <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-xl border border-purple-200 dark:border-purple-800">
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
                       <PencilIcon className="w-5 h-5 text-purple-500" />
                       Writer
                     </h4>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-gray-700 dark:text-gray-400">
                       {movie.Writer}
                     </p>
                   </div>
@@ -379,11 +379,11 @@ export function MovieDetails({
               <div className="space-y-6">
                 {movie.Actors && movie.Actors !== 'N/A' && (
                   <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-xl border border-orange-200 dark:border-orange-800">
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
                       <UserGroupIcon className="w-5 h-5 text-orange-500" />
                       Cast
                     </h4>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-gray-700 dark:text-gray-400">
                       {movie.Actors}
                     </p>
                   </div>
@@ -391,11 +391,11 @@ export function MovieDetails({
 
                 {movie.Production && movie.Production !== 'N/A' && (
                   <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-xl border border-indigo-200 dark:border-indigo-800">
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
                       <BuildingOfficeIcon className="w-5 h-5 text-indigo-500" />
                       Production
                     </h4>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-gray-700 dark:text-gray-400">
                       {movie.Production}
                     </p>
                   </div>
@@ -412,35 +412,35 @@ export function MovieDetails({
                 transition={{ delay: 1.0 }}
               >
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                  <UserIcon className="w-5 h-5 text-gray-500" />
+                  <UserIcon className="w-5 h-5" />
                   Additional Information
                 </h3>
                 <div className="grid md:grid-cols-3 gap-6">
                   {movie.BoxOffice && movie.BoxOffice !== 'N/A' && (
                     <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-xl border border-emerald-200 dark:border-emerald-800">
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
                         <CurrencyDollarIcon className="w-5 h-5 text-emerald-500" />
                         Box Office
                       </h4>
-                      <p className="text-gray-700 dark:text-gray-300 font-medium">
+                      <p className="text-gray-700 dark:text-gray-400 font-medium">
                         {movie.BoxOffice}
                       </p>
                     </div>
                   )}
                   {movie.DVD && movie.DVD !== 'N/A' && (
                     <div className="bg-pink-50 dark:bg-pink-900/20 p-4 rounded-xl border border-pink-200 dark:border-pink-800">
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
                         <ComputerDesktopIcon className="w-5 h-5 text-pink-500" />
                         DVD Release
                       </h4>
-                      <p className="text-gray-700 dark:text-gray-300">
+                      <p className="text-gray-700 dark:text-gray-400">
                         {movie.DVD}
                       </p>
                     </div>
                   )}
                   {movie.Website && movie.Website !== 'N/A' && (
                     <div className="bg-cyan-50 dark:bg-cyan-900/20 p-4 rounded-xl border border-cyan-200 dark:border-cyan-800">
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-800 mb-2 flex items-center gap-2">
                         <GlobeAltIcon className="w-5 h-5 text-cyan-500" />
                         Official Website
                       </h4>

@@ -18,4 +18,4 @@ export function EmptyState({ className = '' }: EmptyStateProps) {
       </div>
     </div>
   );
-} 
+}

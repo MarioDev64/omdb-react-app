@@ -16,7 +16,10 @@ export const searchResultSchema = z.object({
  */
 export const searchResponseSchema = z.object({
   Search: z.array(searchResultSchema).optional(),
-  totalResults: z.string().transform(val => parseInt(val, 10)).optional(),
+  totalResults: z
+    .string()
+    .transform(val => parseInt(val, 10))
+    .optional(),
   Response: z.enum(['True', 'False']),
   Error: z.string().optional(),
 });
